@@ -61,21 +61,36 @@ class BinarySearchTree {
   }
 
   has(data) {
-    return searchWithin(this.rooot, data);
-    function searchWithin(node, data){
+    return hasWithin(this.rooot, data);
+    function hasWithin(node, data){
       if (!node){
         return false;
       }
       if (node.data === data){
         return true;
       }
-      return data < node.data ? searchWithin(node.left, data) : searchWithin(node.right, data)
+      return data < node.data ? hasWithin(node.left, data) : hasWithin(node.right, data)
     }
   }
 
-  find(value) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  find(data) {
+    return findWithin(this.rooot, data);
+
+    function findWithin(node, data) {
+      if (!node) {
+        return null;
+      }
+
+      if (node.data === data) {
+        return node;
+      }
+
+      if (data > node.data) {
+        return findWithin(node.right, data);
+      } else {
+        return findWithin(node.left, data);
+      }
+    }
   }
 
   remove(data) {
